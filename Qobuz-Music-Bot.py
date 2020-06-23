@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 views = int=1000000
 view_time = float=2000
-proxy = "p.webshare.io:19999"
+proxy = "proxy here"
 
 opts1 = Options()
 opts1.add_argument('--user-agent=[Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36]')
@@ -22,23 +22,23 @@ browser1 = webdriver.Chrome(options=opts1)
 
 # put video link in ''
 for i in range(views):
-    browser1.get('qobuz link here')
- #   browser1.switch_to.frame("form-horizontal")
- #   browser1.find_element_by_id("login")
- #   browser1.find_element_by_id("password").send_keys("test")
- #   browser1.switch_to.default_content()
-    login = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[1]/div/fieldset/input """)
-    login.click()
-    login = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[1]/div/fieldset/input """).send_keys("qobuz username here")
-    password = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[2]/div/fieldset/input """)
-    password.click()
-    password = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[2]/div/fieldset/input """).send_keys("qobuz password here")
-    submit = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/p[1]/button """)
-    submit.click()
-    time.sleep(5)
-    play_button = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/section/div/div/div/div/div/ul/li[2]/div/span[1]/a/span """)
-    play_button.click()
-    time.sleep(view_time)
+        f = open('links.txt', 'r', encoding='utf-8')
+        for line in f:
+            url = line
+            browser1.execute_script("window.location.replace(arguments[0])", url)
+            time.sleep (3)
+            login = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[1]/div/fieldset/input """)
+            login.click()
+            login = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[1]/div/fieldset/input """).send_keys("username-here")
+            password = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[2]/div/fieldset/input """)
+            password.click()
+            password = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[2]/div/fieldset/input """).send_keys("password-here")
+            submit = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/p[1]/button """)
+            submit.click()
+            time.sleep(5)
+            play_button = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/section/div/div/div/div/div/ul/li[2]/div/span[1]/a/span """)
+            play_button.click()
+            time.sleep(view_time)
 
 browser1.close()
 
