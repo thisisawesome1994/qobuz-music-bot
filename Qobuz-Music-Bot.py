@@ -8,31 +8,31 @@ from selenium.webdriver.chrome.options import Options
 import time
 views = int=1000000
 view_time = float=2000
-proxy = "proxy here"
-
-opts1 = Options()
-opts1.add_argument('--user-agent=[Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36]')
-#opts1.add_argument('--mute-audio')
-opts1.add_argument('--incognito')
-#opts1.add_argument('--proxy-server=%s'% proxy)
-#opts1.add_argument('--headless')
-opts1.add_argument('--start-maximized')
-
-browser1 = webdriver.Chrome(options=opts1)
 
 # put video link in ''
 for i in range(views):
         f = open('links.txt', 'r', encoding='utf-8')
         for line in f:
             url = line
+        f = open('proxies.txt', 'r', encoding='utf-8')
+        for line in f:
+            proxy = line
+            opts1 = Options()
+            opts1.add_argument('--user-agent=[Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36]')
+            #opts1.add_argument('--mute-audio')
+            opts1.add_argument('--incognito')
+            opts1.add_argument('--proxy-server=%s'% proxy)
+            #opts1.add_argument('--headless')
+            opts1.add_argument('--start-maximized')
+            browser1 = webdriver.Chrome(options=opts1)
             browser1.execute_script("window.location.replace(arguments[0])", url)
             time.sleep (3)
             login = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[1]/div/fieldset/input """)
             login.click()
-            login = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[1]/div/fieldset/input """).send_keys("username-here")
+            login = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[1]/div/fieldset/input """).send_keys("username")
             password = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[2]/div/fieldset/input """)
             password.click()
-            password = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[2]/div/fieldset/input """).send_keys("password-here")
+            password = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[2]/div/fieldset/input """).send_keys("password")
             submit = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/p[1]/button """)
             submit.click()
             time.sleep(5)
