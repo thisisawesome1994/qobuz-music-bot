@@ -1,5 +1,5 @@
 # qobuz-music-bot
 
-Qobuz Music Bot. 
+Qobuz Music Bot. (Fixed)
 
-(Can someone give me correct line to play the album, I am not very good with xpath etc..)
+You can load any album link...
