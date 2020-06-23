@@ -17,6 +17,12 @@ for i in range(views):
         f = open('proxies.txt', 'r', encoding='utf-8')
         for line in f:
             proxy = line
+        f = open('username.txt', 'r', encoding='utf-8')
+        for line in f:
+            username = line
+        f = open('password.txt', 'r', encoding='utf-8')
+        for line in f:
+            password = line
             opts1 = Options()
             opts1.add_argument('--user-agent=[Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36]')
             #opts1.add_argument('--mute-audio')
@@ -27,12 +33,8 @@ for i in range(views):
             browser1 = webdriver.Chrome(options=opts1)
             browser1.execute_script("window.location.replace(arguments[0])", url)
             time.sleep (3)
-            login = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[1]/div/fieldset/input """)
-            login.click()
-            login = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[1]/div/fieldset/input """).send_keys("username")
-            password = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[2]/div/fieldset/input """)
-            password.click()
-            password = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[2]/div/fieldset/input """).send_keys("password")
+            login = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[1]/div/fieldset/input """).send_keys(username)
+            password = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[2]/div/fieldset/input """).send_keys(password)
             submit = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/p[1]/button """)
             submit.click()
             time.sleep(5)
