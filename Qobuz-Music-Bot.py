@@ -6,8 +6,8 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.proxy import Proxy, ProxyType
 from selenium.webdriver.chrome.options import Options
 import time
-views = int=1000000
-view_time = float=2000
+views = int(input("enter no. of view: "))
+view_time = float(input('enter time for each view: '))
 
 # put video link in ''
 for i in range(views):
@@ -23,8 +23,11 @@ for i in range(views):
         f = open('password.txt', 'r', encoding='utf-8')
         for line in f:
             password = line
+        f = open('useragents.txt', 'r', encoding='utf-8')
+        for line in f:
+            useragent = line
             opts1 = Options()
-            opts1.add_argument('--user-agent=[Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36]')
+            opts1.add_argument('--user-agent=%s'% useragent)
             #opts1.add_argument('--mute-audio')
             opts1.add_argument('--incognito')
             opts1.add_argument('--proxy-server=%s'% proxy)
