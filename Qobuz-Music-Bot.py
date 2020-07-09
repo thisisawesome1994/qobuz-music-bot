@@ -11,7 +11,7 @@ import os
 import time
 import random
 
-proxy = random.choice(open('proxies.txt').readlines())
+#proxy = random.choice(open('proxies.txt').readlines())
 useragent = random.choice(open('useragents.txt').readlines())
 url = random.choice(open('links.txt').readlines())
 
@@ -20,7 +20,7 @@ opts1 = Options()
 opts1.add_argument('--user-agent=%s'% useragent)
 #opts1.add_argument('--mute-audio')
 opts1.add_argument('--incognito')
-opts1.add_argument('--proxy-server=%s'% proxy)
+#opts1.add_argument('--proxy-server=%s'% proxy)
 #opts1.add_argument('--headless')
 opts1.add_argument('--start-maximized')
 browser1 = webdriver.Chrome(options=opts1)
@@ -38,10 +38,10 @@ for username, password in credentials:
     submit = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/p[1]/button """)
     submit.click()
     time.sleep(15)
-    play_button = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/section/div/div/div/div/div/ul/li[2]/div/span[1]/a/span """)
+    play_button = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[1]/a[1]/span """)
     time.sleep(2)
     play_button.click()
-    time.sleep(randint(180,3200))
+    time.sleep(randint(11300,11400))
     os.startfile("launch.exe")
     browser1.quit()
 # script by thisisawesome1994
