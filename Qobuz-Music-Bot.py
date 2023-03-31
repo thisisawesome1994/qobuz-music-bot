@@ -26,21 +26,20 @@ opts1.add_argument('--start-maximized')
 browser1 = webdriver.Chrome(options=opts1)
 browser1.execute_script("window.location.replace(arguments[0])", url)
 time.sleep(10)
+browser1.find_element("xpath", '//*[@id="onetrust-accept-btn-handler"]').click()
+time.sleep(8)
 with open('credentials.txt') as f:
     credentials = [x.strip().split(':', 1) for x in f]
 #username = f.x.strip().split(':')[0]
 #password = f.x.strip().split(':')[1]
 for username, password in credentials:
-    browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[1]/div/fieldset/input """).send_keys(username)
+    browser1.find_element("xpath", '//*[@id="root"]/div[2]/div/div[2]/div[2]/div[2]/div/div[3]/form/div[1]/div/fieldset/input').send_keys(username)
     time.sleep(2)
-    browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/div[2]/div/fieldset/input """).send_keys(password)
+    browser1.find_element("xpath", '//*[@id="root"]/div[2]/div/div[2]/div[2]/div[2]/div/div[3]/form/div[2]/div/fieldset/input').send_keys(password)
     time.sleep(2)
-    submit = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[2]/div/div[3]/form/p[1]/button """)
-    submit.click()
+    browser1.find_element("xpath", '//*[@id="root"]/div[2]/div/div[2]/div[2]/div[2]/div/div[3]/form/p[1]/button').click()
     time.sleep(15)
-    play_button = browser1.find_element_by_xpath(""" //*[@id="root"]/div/div/div[3]/div/div[1]/a[1]/span """)
-    time.sleep(2)
-    play_button.click()
+    browser1.find_element("xpath", '//*[@id="root"]/div[2]/div/div[3]/div/section[2]/section/div[3]/span[1]').click()
     time.sleep(randint(11300,11400))
     os.startfile("launch.exe")
     browser1.quit()
